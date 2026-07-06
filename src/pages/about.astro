@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="About" description="Claude Prompt Gallery 소개">
+  <div class="about-page">
+    <h1>About</h1>
+
+    <section>
+      <h2>이 사이트는?</h2>
+      <p>
+        Claude(Anthropic AI)를 사용하며 수집한 프롬프트 기록을 공개 큐레이션하는 정적 웹사이트입니다.
+        Claude Code 세션 로그와 웹 채팅 대화를 정리해 검색하고 공유할 수 있습니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>데이터 출처</h2>
+      <ul>
+        <li><strong>Claude Code</strong> — <code>~/.claude/projects/</code> 경로의 <code>.jsonl</code> 세션 파일</li>
+        <li><strong>웹 채팅</strong> — claude.ai에서 내보낸 JSON 대화 내보내기 파일</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>새 프롬프트 추가하기</h2>
+      <h3>방법 1 — JSON 파일 직접 작성</h3>
+      <p><code>data/prompts/</code> 폴더에 아래 스키마로 <code>.json</code> 파일을 추가하세요.</p>
+      <pre><code>{`{
+  "id": "unique-slug",
+  "title": "프롬프트 제목",
+  "source": "web",       // "web" | "code"
+  "date": "2025-07-01",  // ISO 8601
+  "tags": ["태그1", "태그2"],
+  "summary": "한 줄 요약",
+  "prompt": "# 마크다운 형식의 프롬프트 내용",
+  "response": "# 마크다운 형식의 응답 (선택)",
+  "sessionRef": "세션 파일 경로 (선택)"
+}`}</code></pre>
+
+      <h3>방법 2 — 변환 스크립트 사용</h3>
+      <pre><code>{`# Claude Code 세션 변환
+node scripts/convert-code-session.mjs <session.jsonl>
+
+# 웹 채팅 JSON 변환
+node scripts/convert-web-chat.mjs <export.json>`}</code></pre>
+      <p>변환된 파일은 자동으로 <code>data/prompts/</code>에 저장됩니다.</p>
+
+      <h3>빌드 및 배포</h3>
+      <pre><code>{`npm run build   # 정적 파일 빌드 → dist/
+npm run dev     # 로컬 개발 서버 실행 (http://localhost:4321)`}</code></pre>
+    </section>
+
+    <section>
+      <h2>기술 스택</h2>
+      <ul>
+        <li>Astro 4 (Static Site Generation)</li>
+        <li>Tailwind CSS 3</li>
+        <li>Fuse.js (클라이언트 사이드 검색)</li>
+        <li>marked (마크다운 렌더링)</li>
+        <li>GitHub Pages (배포)</li>
+      </ul>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .about-page { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; }
+  section { margin-bottom: 2.5rem; }
+  h2 { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin: 1rem 0 0.4rem; color: var(--text-muted); }
+  p { margin-bottom: 0.75rem; line-height: 1.7; }
+  ul { padding-left: 1.5em; line-height: 1.8; }
+  code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.875em;
+    background: var(--tag-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+  }
+  pre {
+    background: #0d1117;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    margin: 0.75rem 0 1rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+  pre code { background: none; padding: 0; color: inherit; }
+</style>

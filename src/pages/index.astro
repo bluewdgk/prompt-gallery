@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import PromptCard from '../components/PromptCard.astro';
+import SearchFilter from '../components/SearchFilter.astro';
+import { loadPrompts, getAllTags } from '../lib/prompts';
+
+const prompts = loadPrompts();
+const tags = getAllTags(prompts);
+---
+
+<Base title="홈" description="Claude 사용 프롬프트 큐레이션">
+  <div class="page-header">
+    <h1>Claude Prompt Gallery</h1>
+    <p class="subtitle">Claude Code 세션과 웹 채팅에서 수집한 프롬프트 기록</p>
+    <p class="count">{prompts.length}개 프롬프트</p>
+  </div>
+
+  <SearchFilter tags={tags} />
+
+  {prompts.length === 0 ? (
+    <div class="empty-state">
+      <p>아직 프롬프트가 없습니다.</p>
+      <p><code>data/prompts/</code>에 JSON 파일을 추가하거나 변환 스크립트를 실행하세요.</p>
+    </div>
+  ) : (
+    <div id="card-grid" class="card-grid">
+      {prompts.map((p) => <PromptCard prompt={p} />)}
+    </div>
+  )}
+
+  <div id="no-results" class="empty-state" style="display:none">
+    <p>검색 결과가 없습니다.</p>
+  </div>
+</Base>
+
+<style>
+  .page-header {
+    margin-bottom: 2rem;
+  }
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+  .count {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+  }
+  .empty-state p { margin-bottom: 0.5rem; }
+  .empty-state code {
+    font-family: monospace;
+    background: var(--tag-bg);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+  }
+</style>
+
+<script>
+  // Show/hide "no results" message based on visible cards
+  const observer = new MutationObserver(() => {
+    const visibleCards = document.querySelectorAll('.prompt-card:not([style*="display: none"])');
+    const noResults = document.getElementById('no-results');
+    if (noResults) noResults.style.display = visibleCards.length === 0 ? '' : 'none';
+  });
+  const grid = document.getElementById('card-grid');
+  if (grid) observer.observe(grid, { attributes: true, subtree: true, attributeFilter: ['style'] });
+</script>

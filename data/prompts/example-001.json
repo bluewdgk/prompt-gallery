@@ -1,0 +1,11 @@
+{
+  "id": "example-001",
+  "title": "Python 파일 파싱 스크립트 작성",
+  "source": "code",
+  "date": "2025-06-20",
+  "tags": ["python", "파싱", "cli", "Claude Code"],
+  "summary": "CSV 파일을 읽어 특정 컬럼을 필터링하고 JSON으로 출력하는 CLI 스크립트를 Claude Code로 작성한 세션.",
+  "prompt": "# 요청\n\n다음 조건을 만족하는 Python CLI 스크립트를 작성해줘.\n\n- `input.csv` 파일을 읽는다\n- `--filter` 옵션으로 컬럼명과 값을 지정해 필터링한다\n- 결과를 `output.json`으로 저장한다\n\n## 예시 사용법\n\n```bash\npython parse.py --filter status=active --filter type=admin\n```\n\n## 입력 파일 형식\n\n```csv\nid,name,status,type\n1,Alice,active,admin\n2,Bob,inactive,user\n3,Carol,active,user\n```",
+  "response": "# 결과\n\n```python\nimport argparse\nimport csv\nimport json\nfrom pathlib import Path\n\ndef parse_filter(value: str) -> tuple[str, str]:\n    key, _, val = value.partition('=')\n    return key.strip(), val.strip()\n\ndef main():\n    parser = argparse.ArgumentParser(description='CSV 필터링 후 JSON 출력')\n    parser.add_argument('--input', default='input.csv')\n    parser.add_argument('--output', default='output.json')\n    parser.add_argument('--filter', action='append', default=[])\n    args = parser.parse_args()\n\n    filters = dict(parse_filter(f) for f in args.filter)\n\n    rows = []\n    with open(args.input, newline='', encoding='utf-8') as f:\n        reader = csv.DictReader(f)\n        for row in reader:\n            if all(row.get(k) == v for k, v in filters.items()):\n                rows.append(row)\n\n    Path(args.output).write_text(\n        json.dumps(rows, ensure_ascii=False, indent=2),\n        encoding='utf-8'\n    )\n    print(f'{len(rows)}개 행 저장 → {args.output}')\n\nif __name__ == '__main__':\n    main()\n```\n\n## 실행 결과\n\n```\n1개 행 저장 → output.json\n```",
+  "sessionRef": "~/.claude/projects/my-project/session-20250620.jsonl"
+}

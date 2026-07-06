@@ -1,0 +1,10 @@
+{
+  "id": "example-002",
+  "title": "React 컴포넌트 리팩토링 — 중복 제거",
+  "source": "web",
+  "date": "2025-06-28",
+  "tags": ["react", "typescript", "리팩토링", "컴포넌트"],
+  "summary": "반복되는 카드 UI 로직을 추상화하고 제네릭 타입을 적용해 재사용 가능한 컴포넌트로 개선한 대화.",
+  "prompt": "# 리팩토링 요청\n\n아래 두 컴포넌트가 거의 동일한 구조인데, 하나로 합치고 싶어.\n\n```tsx\n// UserCard.tsx\nfunction UserCard({ user }: { user: User }) {\n  return (\n    <div className=\"card\">\n      <h2>{user.name}</h2>\n      <p>{user.email}</p>\n      <span className=\"badge blue\">{user.role}</span>\n    </div>\n  );\n}\n\n// ProductCard.tsx\nfunction ProductCard({ product }: { product: Product }) {\n  return (\n    <div className=\"card\">\n      <h2>{product.title}</h2>\n      <p>{product.description}</p>\n      <span className=\"badge green\">{product.category}</span>\n    </div>\n  );\n}\n```\n\n`title`, `subtitle`, `badge` 필드만 있으면 되는 제네릭 카드로 만들어줘.",
+  "response": "# 리팩토링 결과\n\n```tsx\n// Card.tsx\ninterface CardProps {\n  title: string;\n  subtitle: string;\n  badge: { label: string; color: 'blue' | 'green' | 'orange' };\n  onClick?: () => void;\n}\n\nexport function Card({ title, subtitle, badge, onClick }: CardProps) {\n  const colorMap = {\n    blue: 'bg-blue-100 text-blue-800',\n    green: 'bg-green-100 text-green-800',\n    orange: 'bg-orange-100 text-orange-800',\n  };\n\n  return (\n    <div className=\"card\" onClick={onClick}>\n      <h2>{title}</h2>\n      <p>{subtitle}</p>\n      <span className={`badge ${colorMap[badge.color]}`}>{badge.label}</span>\n    </div>\n  );\n}\n```\n\n## 사용 예시\n\n```tsx\n<Card\n  title={user.name}\n  subtitle={user.email}\n  badge={{ label: user.role, color: 'blue' }}\n/>\n\n<Card\n  title={product.title}\n  subtitle={product.description}\n  badge={{ label: product.category, color: 'green' }}\n/>\n```"
+}

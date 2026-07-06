@@ -1,0 +1,192 @@
+---
+interface Props {
+  tags: string[];
+}
+const { tags } = Astro.props;
+---
+
+<div id="search-filter-bar">
+  <div class="search-row">
+    <input
+      id="search-input"
+      type="search"
+      placeholder="제목, 요약, 태그 검색..."
+      autocomplete="off"
+    />
+    <div class="source-filters">
+      <button class="filter-btn active" data-source="">전체</button>
+      <button class="filter-btn" data-source="code">Claude Code</button>
+      <button class="filter-btn" data-source="web">웹 채팅</button>
+    </div>
+  </div>
+  {tags.length > 0 && (
+    <div class="tag-filter-row" id="tag-filter-row">
+      {tags.map((tag) => (
+        <button class="tag-filter-btn" data-tag={tag}>{tag}</button>
+      ))}
+    </div>
+  )}
+  <p id="result-count" class="result-count"></p>
+</div>
+
+<style>
+  #search-filter-bar { margin-bottom: 1.5rem; }
+  .search-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  #search-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-surface);
+    color: var(--text);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  #search-input:focus { border-color: var(--accent); }
+  .source-filters { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 0.45rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-surface);
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .tag-filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+  }
+  .tag-filter-btn {
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .tag-filter-btn:hover { opacity: 0.75; }
+  .tag-filter-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .result-count {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    min-height: 1.2em;
+  }
+</style>
+
+<script>
+  import Fuse from 'fuse.js';
+
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('.prompt-card'));
+
+  interface CardData {
+    el: HTMLElement;
+    id: string;
+    source: string;
+    tags: string[];
+    title: string;
+    summary: string;
+  }
+
+  const data: CardData[] = cards.map((el) => ({
+    el,
+    id: el.dataset.id ?? '',
+    source: el.dataset.source ?? '',
+    tags: JSON.parse(el.dataset.tags ?? '[]') as string[],
+    title: el.dataset.title ?? '',
+    summary: el.dataset.summary ?? '',
+  }));
+
+  const fuse = new Fuse(data, {
+    keys: ['title', 'summary', 'tags'],
+    threshold: 0.35,
+    includeScore: true,
+  });
+
+  let activeSource = '';
+  let activeTag = '';
+  let searchQuery = '';
+
+  function applyFilters() {
+    let visible: CardData[];
+
+    if (searchQuery.trim()) {
+      visible = fuse.search(searchQuery).map((r) => r.item);
+    } else {
+      visible = [...data];
+    }
+
+    if (activeSource) {
+      visible = visible.filter((d) => d.source === activeSource);
+    }
+    if (activeTag) {
+      visible = visible.filter((d) => d.tags.includes(activeTag));
+    }
+
+    const visibleIds = new Set(visible.map((d) => d.id));
+    data.forEach((d) => {
+      d.el.style.display = visibleIds.has(d.id) ? '' : 'none';
+    });
+
+    const count = document.getElementById('result-count');
+    if (count) {
+      count.textContent =
+        searchQuery || activeSource || activeTag
+          ? `${visible.length}개 결과`
+          : '';
+    }
+  }
+
+  const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+  searchInput?.addEventListener('input', (e) => {
+    searchQuery = (e.target as HTMLInputElement).value;
+    applyFilters();
+  });
+
+  document.querySelectorAll<HTMLElement>('.filter-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeSource = btn.dataset.source ?? '';
+      applyFilters();
+    });
+  });
+
+  document.querySelectorAll<HTMLElement>('.tag-filter-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const tag = btn.dataset.tag ?? '';
+      if (activeTag === tag) {
+        activeTag = '';
+        btn.classList.remove('active');
+      } else {
+        document.querySelectorAll('.tag-filter-btn').forEach((b) => b.classList.remove('active'));
+        activeTag = tag;
+        btn.classList.add('active');
+      }
+      applyFilters();
+    });
+  });
+</script>
