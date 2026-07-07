@@ -12,8 +12,19 @@ export async function getStaticPaths() {
 const { prompt } = Astro.props;
 
 marked.setOptions({ gfm: true, breaks: false });
-const promptHtml = marked.parse(prompt.prompt) as string;
-const responseHtml = prompt.response ? (marked.parse(prompt.response) as string) : null;
+
+// messages[] 우선. 없으면 prompt/response에서 합성
+const turns = prompt.messages && prompt.messages.length > 0
+  ? prompt.messages
+  : [
+      { role: 'human', content: prompt.prompt },
+      ...(prompt.response ? [{ role: 'assistant', content: prompt.response }] : []),
+    ];
+
+const renderedTurns = turns.map((m) => ({
+  role: m.role as 'human' | 'assistant',
+  html: marked.parse(m.content) as string,
+}));
 
 const dateFormatted = new Date(prompt.date).toLocaleDateString('ko-KR', {
   year: 'numeric', month: 'long', day: 'numeric',
@@ -31,6 +42,9 @@ const sourceLabel = prompt.source === 'code' ? 'Claude Code' : '웹 채팅';
       <div class="meta-row">
         <span class={`source-badge source-${prompt.source}`}>{sourceLabel}</span>
         <time class="meta-date">{dateFormatted}</time>
+        {turns.length > 1 && (
+          <span class="turn-count">{turns.length}턴 대화</span>
+        )}
       </div>
       <h1>{prompt.title}</h1>
       <p class="summary">{prompt.summary}</p>
@@ -44,22 +58,20 @@ const sourceLabel = prompt.source === 'code' ? 'Claude Code' : '웹 채팅';
       )}
     </header>
 
-    <section class="block prompt-block">
-      <h2 class="block-label">프롬프트</h2>
-      <div class="prose" set:html={promptHtml} />
-    </section>
-
-    {responseHtml && (
-      <section class="block response-block">
-        <h2 class="block-label">응답</h2>
-        <div class="prose" set:html={responseHtml} />
-      </section>
-    )}
+    <div class="conversation">
+      {renderedTurns.map((turn, i) => (
+        <section class={`turn turn-${turn.role}`}>
+          <div class="turn-label">
+            {turn.role === 'human' ? '사용자' : 'Claude'}
+          </div>
+          <div class="prose" set:html={turn.html} />
+        </section>
+      ))}
+    </div>
   </div>
 </Base>
 
 <style is:global>
-  /* Prose (markdown) styles */
   .prose { color: var(--text); line-height: 1.7; }
   .prose h1, .prose h2, .prose h3, .prose h4 {
     font-weight: 600;
@@ -80,6 +92,7 @@ const sourceLabel = prompt.source === 'code' ? 'Claude Code' : '웹 채팅';
   }
   .prose hr { border: none; border-top: 1px solid var(--border); margin: 1.5em 0; }
   .prose a { color: var(--accent); }
+  .prose strong { font-weight: 600; }
   .prose code:not(pre code) {
     font-family: ui-monospace, monospace;
     font-size: 0.875em;
@@ -99,18 +112,9 @@ const sourceLabel = prompt.source === 'code' ? 'Claude Code' : '웹 채팅';
     line-height: 1.6;
     border: 1px solid #30363d;
   }
-  .prose pre code {
-    background: none;
-    padding: 0;
-    font-size: inherit;
-    color: inherit;
-  }
+  .prose pre code { background: none; padding: 0; font-size: inherit; color: inherit; }
   .prose table { border-collapse: collapse; width: 100%; margin: 1em 0; }
-  .prose th, .prose td {
-    border: 1px solid var(--border);
-    padding: 0.5em 0.75em;
-    text-align: left;
-  }
+  .prose th, .prose td { border: 1px solid var(--border); padding: 0.5em 0.75em; text-align: left; }
   .prose th { background: var(--bg-surface); font-weight: 600; }
 </style>
 
@@ -123,6 +127,7 @@ const sourceLabel = prompt.source === 'code' ? 'Claude Code' : '웹 채팅';
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 0.75rem;
+    flex-wrap: wrap;
   }
   .source-badge {
     font-size: 0.72rem;
@@ -135,6 +140,13 @@ const sourceLabel = prompt.source === 'code' ? 'Claude Code' : '웹 채팅';
   .source-code { background: var(--badge-code-bg); color: var(--badge-code-text); }
   .source-web  { background: var(--badge-web-bg);  color: var(--badge-web-text); }
   .meta-date { font-size: 0.85rem; color: var(--text-muted); }
+  .turn-count {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    background: var(--tag-bg);
+    padding: 0.15rem 0.55rem;
+    border-radius: 9999px;
+  }
   h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
   .summary { color: var(--text-muted); margin-bottom: 0.75rem; }
   .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.75rem; }
@@ -145,23 +157,31 @@ const sourceLabel = prompt.source === 'code' ? 'Claude Code' : '웹 채팅';
     padding: 0.1rem 0.4rem;
     border-radius: 4px;
   }
-  .block {
+
+  /* 대화 스레드 */
+  .conversation { display: flex; flex-direction: column; gap: 0; }
+  .turn {
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    background: var(--bg-surface);
+    border-radius: 0;
+    padding: 1.25rem 1.5rem;
+    margin: 0;
+    position: relative;
   }
-  .block-label {
-    font-size: 0.78rem;
-    font-weight: 600;
+  .turn + .turn { border-top: none; }
+  .turn:first-child { border-radius: 8px 8px 0 0; }
+  .turn:last-child { border-radius: 0 0 8px 8px; }
+  .turn:only-child { border-radius: 8px; }
+  .turn-human { background: var(--bg); }
+  .turn-assistant { background: var(--bg-surface); }
+  .turn-label {
+    font-size: 0.72rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.85rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border);
   }
-  .prompt-block .block-label { color: var(--badge-code-text); }
-  .response-block .block-label { color: var(--badge-web-text); }
+  .turn-human .turn-label { color: var(--badge-code-text); }
+  .turn-assistant .turn-label { color: var(--badge-web-text); }
 </style>

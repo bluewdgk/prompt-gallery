@@ -1,6 +1,11 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
+export interface Message {
+  role: 'human' | 'assistant';
+  content: string;
+}
+
 export interface Prompt {
   id: string;
   title: string;
@@ -10,6 +15,7 @@ export interface Prompt {
   summary: string;
   prompt: string;
   response?: string;
+  messages?: Message[];
   sessionRef?: string;
 }
 

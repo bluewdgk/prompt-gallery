@@ -7,6 +7,16 @@
     "웹 채팅"
   ],
   "summary": "Hi Tn,  Thank you for the additional information.  Modl:QA+ can definitely handle the below requirements you listed and",
+  "messages": [
+    {
+      "role": "human",
+      "content": "Hi Tn, \nThank you for the additional information. \nModl:QA+ can definitely handle the below requirements you listed and can be demonstrated as part of free trial. \nAs shared, it works well with mobile casual games (as long as not twitch behavior).  Feel free to send game link, I we can review to make sure a good fit and let you know. \nI do want to stress that this is a newer product so will not necessarily replace all humans and will be some work to adapt to your workflow, but we can cover that as part of initial trial period and talk about requirements as part of commercial POC if you wish to proceed from seeing it hit your below scope requirements.\nThe only real open question is how handles Korean, but we can find out.  So far no indicator that says cannot. \nPlease let me know if you have further questions. \nTed \n\n이거 번역해줘."
+    },
+    {
+      "role": "assistant",
+      "content": "안녕하세요 Tn,\n\n추가 정보 감사합니다.\nModl:QA+는 아래에 나열하신 요구 사항들을 충분히 처리할 수 있으며, 무료 체험의 일환으로 시연이 가능합니다.\n말씀드린 대로, 모바일 캐주얼 게임과 잘 호환됩니다 (트위치 조작이 필요한 게임 제외). 게임 링크를 보내주시면 검토 후 적합 여부를 알려드리겠습니다.\n다만, 이 제품은 비교적 새로운 제품이므로 모든 인력을 대체하지는 못할 수 있으며, 귀사의 워크플로우에 맞게 조정하는 데 다소 작업이 필요할 수 있습니다. 그러나 초기 체험 기간 동안 이 부분을 함께 다루고, 상업적 POC(개념 증명)를 진행하고자 하신다면 요구 사항에 대해서도 논의할 수 있습니다.\n유일하게 열려 있는 질문은 한국어 처리 방식인데, 이는 확인이 필요합니다. 현재까지는 불가능하다는 징후는 없습니다.\n추가 질문이 있으시면 알려주세요.\n\nTed"
+    }
+  ],
   "prompt": "Hi Tn, \nThank you for the additional information. \nModl:QA+ can definitely handle the below requirements you listed and can be demonstrated as part of free trial. \nAs shared, it works well with mobile casual games (as long as not twitch behavior).  Feel free to send game link, I we can review to make sure a good fit and let you know. \nI do want to stress that this is a newer product so will not necessarily replace all humans and will be some work to adapt to your workflow, but we can cover that as part of initial trial period and talk about requirements as part of commercial POC if you wish to proceed from seeing it hit your below scope requirements.\nThe only real open question is how handles Korean, but we can find out.  So far no indicator that says cannot. \nPlease let me know if you have further questions. \nTed \n\n이거 번역해줘.",
   "response": "안녕하세요 Tn,\n\n추가 정보 감사합니다.\nModl:QA+는 아래에 나열하신 요구 사항들을 충분히 처리할 수 있으며, 무료 체험의 일환으로 시연이 가능합니다.\n말씀드린 대로, 모바일 캐주얼 게임과 잘 호환됩니다 (트위치 조작이 필요한 게임 제외). 게임 링크를 보내주시면 검토 후 적합 여부를 알려드리겠습니다.\n다만, 이 제품은 비교적 새로운 제품이므로 모든 인력을 대체하지는 못할 수 있으며, 귀사의 워크플로우에 맞게 조정하는 데 다소 작업이 필요할 수 있습니다. 그러나 초기 체험 기간 동안 이 부분을 함께 다루고, 상업적 POC(개념 증명)를 진행하고자 하신다면 요구 사항에 대해서도 논의할 수 있습니다.\n유일하게 열려 있는 질문은 한국어 처리 방식인데, 이는 확인이 필요합니다. 현재까지는 불가능하다는 징후는 없습니다.\n추가 질문이 있으시면 알려주세요.\n\nTed"
 }

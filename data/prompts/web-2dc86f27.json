@@ -7,6 +7,24 @@
     "웹 채팅"
   ],
   "summary": "https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?ems_gubun=E&sid1=6897141056327&POST_CODE=&mgbn=trace&tra",
+  "messages": [
+    {
+      "role": "human",
+      "content": "https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?ems_gubun=E&sid1=6897141056327&POST_CODE=&mgbn=trace&traceselect=1&target_command=&JspURI=&postNum=6897141056327\n\n이런 url에서 송장번호 (postnum)만 바꿔서 복사붙여넣기하고싶어.\n쉽게 하는 양식 만들어줄래?"
+    },
+    {
+      "role": "assistant",
+      "content": "```\nThis block is not supported on your current device yet.\n```\n\n\n```\nThis block is not supported on your current device yet.\n```\n\n송장번호를 붙여넣으면 URL을 바로 만들어줍니다.\n\n- 한 줄에 하나씩, 또는 쉼표/공백으로 구분해서 여러 개 한꺼번에 넣을 수 있어요.\n- 각 URL 옆 복사 버튼으로 하나씩, 또는 전체 복사 버튼으로 한 번에 복사할 수 있어요."
+    },
+    {
+      "role": "human",
+      "content": "구글 스프레드시트에서 하는데 쉽게하고싶어서"
+    },
+    {
+      "role": "assistant",
+      "content": "구글 스프레드시트에서 쓰기엔 공식 하나가 제일 편해요.\n\n**B1 셀에 송장번호**가 있으면, 옆 셀에 이 공식 넣으면 끝:\n\n```\n=\"https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?ems_gubun=E&POST_CODE=&mgbn=trace&traceselect=1&target_command=&JspURI=&sid1=\"&B1&\"&postNum=\"&B1\n```\n\n그 다음 아래로 쭉 드래그하면 송장번호별 URL이 자동 생성됩니다.\n\n---\n\n**클릭 가능한 링크로 만들고 싶다면** `HYPERLINK` 함수로 감싸면 돼요:\n\n```\n=HYPERLINK(\"https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?ems_gubun=E&POST_CODE=&mgbn=trace&traceselect=1&target_command=&JspURI=&sid1=\"&B1&\"&postNum=\"&B1, B1)\n```\n\n이렇게 하면 송장번호 텍스트가 클릭 가능한 링크로 표시돼요."
+    }
+  ],
   "prompt": "https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?ems_gubun=E&sid1=6897141056327&POST_CODE=&mgbn=trace&traceselect=1&target_command=&JspURI=&postNum=6897141056327\n\n이런 url에서 송장번호 (postnum)만 바꿔서 복사붙여넣기하고싶어.\n쉽게 하는 양식 만들어줄래?",
-  "response": "송장번호를 붙여넣으면 URL을 바로 만들어줍니다.\n\n- 한 줄에 하나씩, 또는 쉼표/공백으로 구분해서 여러 개 한꺼번에 넣을 수 있어요.\n- 각 URL 옆 복사 버튼으로 하나씩, 또는 전체 복사 버튼으로 한 번에 복사할 수 있어요."
+  "response": "```\nThis block is not supported on your current device yet.\n```\n\n\n```\nThis block is not supported on your current device yet.\n```\n\n송장번호를 붙여넣으면 URL을 바로 만들어줍니다.\n\n- 한 줄에 하나씩, 또는 쉼표/공백으로 구분해서 여러 개 한꺼번에 넣을 수 있어요.\n- 각 URL 옆 복사 버튼으로 하나씩, 또는 전체 복사 버튼으로 한 번에 복사할 수 있어요."
 }

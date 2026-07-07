@@ -7,6 +7,24 @@
     "웹 채팅"
   ],
   "summary": "생애최초 대출이 어떻게 구성되어있나?",
+  "messages": [
+    {
+      "role": "human",
+      "content": "생애최초 대출이 어떻게 구성되어있나?"
+    },
+    {
+      "role": "assistant",
+      "content": "The user is asking about first-time homebuyer loans in Korea, which is a policy area that changes regularly, so I need to search for current information. I'll aim for a concise response in the medium range and include a brief note about not being a financial advisor since this involves financial guidance.\n```\nThis block is not supported on your current device yet.\n```\n\nI need to provide a concise medium-length answer in Korean with structured formatting.생애최초 대출은 크게 **정책대출(디딤돌·보금자리론)**과 **시중은행 생애최초 우대 주담대**로 나뉘며, 구조는 이렇게 정리됩니다.\n\n**1. 자격 요건**\n- 세대 구성원 전원이 과거~현재 전 기간 무주택\n- 분양권·입주권도 주택 수에 포함 2026년 기준 분양권 및 입주권은 주택 수에 포함되므로 과거 소유 이력이 있다면 생애최초 혜택을 받기 어렵다\n- 생애 1회만 적용, 처분 후 재적용 불가\n\n**2. LTV/한도**\n- 일반 주담대: 규제지역 최대 70%, 총액 상한 6억 원\n- 디딤돌대출: 생애최초 특례구입자금보증 가입 시 LTV 80%(수도권·규제지역은 70%), 한도 최대 2.4억원(신혼·2자녀 이상 가구는 3.2억원)\n- 보금자리론: 최대 4.2억 원까지 가능(디딤돌보다 소득 기준 완화, DSR 미적용·DTI 60%만 충족)\n\n**3. 소득/자산 기준**\n- 디딤돌: 부부 합산 연소득 6천만원 이하(생애최초 7천만원, 신혼가구 8.5천만원 이하), 순자산 5.11억 원 이하\n- 보금자리론: 소득 기준 더 넉넉\n\n**4. 실제 한도를 좌우하는 변수**\n- LTV는 비율일 뿐, 실제로는 **DSR 40%**(일반은행) 또는 **DTI 60%**(보금자리론)가 최종 한도를 결정\n- 스트레스 DSR 3단계 적용으로 가산금리 반영해 한도 산출\n\n**5. 우대금리(디딤돌 기준)**\n- 결혼 0.1%p, 첫 출산 0.5%p, 추가 자녀당 0.2%p 인하, 최저 1.5%까지\n- 39세 이하는 체증식 상환 선택 가능\n\n한도는 주택가격·LTV·DSR·소득이 동시에 작용해 결정되므로, 실제 대출 가능액은 은행이나 주택도시기금 상담을 통해 확인하는 게 정확합니다. 구체적인 조건은 상품별·은행별로 계속 바뀌니 참고 부탁드려요."
+    },
+    {
+      "role": "human",
+      "content": "내가 빌라를 생애최초로 구매했는데, 나중에 아파트 살때도 생애최초가 가능해?"
+    },
+    {
+      "role": "assistant",
+      "content": "The user is asking whether someone who bought a villa as their first property can use the 생애최초 (first-time homebuyer) benefit again when purchasing an apartment later. I'm working through the answer: generally no, because 생애최초 is a one-time lifetime benefit, and once you've owned any type of housing—including a villa—you're no longer considered 무주택자 (non-homeowner), so you can't reapply for the benefit.아니요, 불가능합니다.\n\n생애최초 혜택은 주택 유형(빌라·아파트·오피스텔 등)과 무관하게 \"생애 최초로 주택을 소유하는 것\" 자체에 적용되는 제도입니다. 빌라를 구매한 순간 무주택 이력이 끊기기 때문에, 이후 아파트를 살 때는 이미 주택 소유 이력이 있는 상태로 간주되어 생애최초 자격이 소멸됩니다.\n\n원칙적으로 생애 1회만 적용되며, 이후 그 집을 처분해 다시 무주택자가 되더라도 생애최초 혜택은 재적용되지 않습니다. 디딤돌·보금자리론 등 정책대출뿐 아니라 시중은행 생애최초 우대 주담대도 동일합니다."
+    }
+  ],
   "prompt": "생애최초 대출이 어떻게 구성되어있나?",
-  "response": "생애최초 대출은 크게 **정책대출(디딤돌·보금자리론)**과 **시중은행 생애최초 우대 주담대**로 나뉘며, 구조는 이렇게 정리됩니다.\n\n**1. 자격 요건**\n- 세대 구성원 전원이 과거~현재 전 기간 무주택\n- 분양권·입주권도 주택 수에 포함 2026년 기준 분양권 및 입주권은 주택 수에 포함되므로 과거 소유 이력이 있다면 생애최초 혜택을 받기 어렵다\n- 생애 1회만 적용, 처분 후 재적용 불가\n\n**2. LTV/한도**\n- 일반 주담대: 규제지역 최대 70%, 총액 상한 6억 원\n- 디딤돌대출: 생애최초 특례구입자금보증 가입 시 LTV 80%(수도권·규제지역은 70%), 한도 최대 2.4억원(신혼·2자녀 이상 가구는 3.2억원)\n- 보금자리론: 최대 4.2억 원까지 가능(디딤돌보다 소득 기준 완화, DSR 미적용·DTI 60%만 충족)\n\n**3. 소득/자산 기준**\n- 디딤돌: 부부 합산 연소득 6천만원 이하(생애최초 7천만원, 신혼가구 8.5천만원 이하), 순자산 5.11억 원 이하\n- 보금자리론: 소득 기준 더 넉넉\n\n**4. 실제 한도를 좌우하는 변수**\n- LTV는 비율일 뿐, 실제로는 **DSR 40%**(일반은행) 또는 **DTI 60%**(보금자리론)가 최종 한도를 결정\n- 스트레스 DSR 3단계 적용으로 가산금리 반영해 한도 산출\n\n**5. 우대금리(디딤돌 기준)**\n- 결혼 0.1%p, 첫 출산 0.5%p, 추가 자녀당 0.2%p 인하, 최저 1.5%까지\n- 39세 이하는 체증식 상환 선택 가능\n\n한도는 주택가격·LTV·DSR·소득이 동시에 작용해 결정되므로, 실제 대출 가능액은 은행이나 주택도시기금 상담을 통해 확인하는 게 정확합니다. 구체적인 조건은 상품별·은행별로 계속 바뀌니 참고 부탁드려요."
+  "response": "The user is asking about first-time homebuyer loans in Korea, which is a policy area that changes regularly, so I need to search for current information. I'll aim for a concise response in the medium range and include a brief note about not being a financial advisor since this involves financial guidance.\n```\nThis block is not supported on your current device yet.\n```\n\nI need to provide a concise medium-length answer in Korean with structured formatting.생애최초 대출은 크게 **정책대출(디딤돌·보금자리론)**과 **시중은행 생애최초 우대 주담대**로 나뉘며, 구조는 이렇게 정리됩니다.\n\n**1. 자격 요건**\n- 세대 구성원 전원이 과거~현재 전 기간 무주택\n- 분양권·입주권도 주택 수에 포함 2026년 기준 분양권 및 입주권은 주택 수에 포함되므로 과거 소유 이력이 있다면 생애최초 혜택을 받기 어렵다\n- 생애 1회만 적용, 처분 후 재적용 불가\n\n**2. LTV/한도**\n- 일반 주담대: 규제지역 최대 70%, 총액 상한 6억 원\n- 디딤돌대출: 생애최초 특례구입자금보증 가입 시 LTV 80%(수도권·규제지역은 70%), 한도 최대 2.4억원(신혼·2자녀 이상 가구는 3.2억원)\n- 보금자리론: 최대 4.2억 원까지 가능(디딤돌보다 소득 기준 완화, DSR 미적용·DTI 60%만 충족)\n\n**3. 소득/자산 기준**\n- 디딤돌: 부부 합산 연소득 6천만원 이하(생애최초 7천만원, 신혼가구 8.5천만원 이하), 순자산 5.11억 원 이하\n- 보금자리론: 소득 기준 더 넉넉\n\n**4. 실제 한도를 좌우하는 변수**\n- LTV는 비율일 뿐, 실제로는 **DSR 40%**(일반은행) 또는 **DTI 60%**(보금자리론)가 최종 한도를 결정\n- 스트레스 DSR 3단계 적용으로 가산금리 반영해 한도 산출\n\n**5. 우대금리(디딤돌 기준)**\n- 결혼 0.1%p, 첫 출산 0.5%p, 추가 자녀당 0.2%p 인하, 최저 1.5%까지\n- 39세 이하는 체증식 상환 선택 가능\n\n한도는 주택가격·LTV·DSR·소득이 동시에 작용해 결정되므로, 실제 대출 가능액은 은행이나 주택도시기금 상담을 통해 확인하는 게 정확합니다. 구체적인 조건은 상품별·은행별로 계속 바뀌니 참고 부탁드려요."
 }
