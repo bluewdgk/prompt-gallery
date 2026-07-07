@@ -26,6 +26,9 @@ const dateFormatted = new Date(prompt.date).toLocaleDateString('ko-KR', {
   <a href={`/prompts/${prompt.id}`} class="card-link">
     <div class="card-header">
       <span class={`source-badge source-${prompt.source}`}>{sourceLabel}</span>
+      {prompt.messages && prompt.messages.length > 1 && (
+        <span class="turn-badge">{prompt.messages.length}턴</span>
+      )}
       <time class="card-date">{dateFormatted}</time>
     </div>
     <h2 class="card-title">{prompt.title}</h2>
@@ -76,6 +79,14 @@ const dateFormatted = new Date(prompt.date).toLocaleDateString('ko-KR', {
   .source-web {
     background: var(--badge-web-bg);
     color: var(--badge-web-text);
+  }
+  .turn-badge {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    background: var(--tag-bg);
+    padding: 0.1rem 0.45rem;
+    border-radius: 9999px;
+    font-variant-numeric: tabular-nums;
   }
   .card-date {
     font-size: 0.8rem;
