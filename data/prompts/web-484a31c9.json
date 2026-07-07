@@ -1,0 +1,12 @@
+{
+  "id": "web-484a31c9",
+  "title": "응답 길이 지침 변경사항 확인",
+  "source": "web",
+  "date": "2026-06-30",
+  "tags": [
+    "웹 채팅"
+  ],
+  "summary": "내가 아래와 같은 지침을 내리는데, 변경사항이 어떤건지 알려줘. <!-- 1. 응답 길이 -->   <response_length_policy>     <rule>응답 생성 전, 아래 기준으로 목표 길이를 먼저 산출",
+  "prompt": "내가 아래와 같은 지침을 내리는데, 변경사항이 어떤건지 알려줘.\n\n<!-- 1. 응답 길이 -->\n  <response_length_policy>\n    <rule>응답 생성 전, 아래 기준으로 목표 길이를 먼저 산출하고 그 범위에 맞춘다. 서두·마무리·반복 요약은 제거한다.</rule>\n    <tiers>\n      <tier name=\"short\"  condition=\"단답·사실 확인·간단한 수정\"            target=\"300자 이내\" />\n      <tier name=\"medium\" condition=\"개념 설명·비교·중간 복잡도 코드\"        target=\"300~500자\" />\n      <tier name=\"long\"   condition=\"복합 문서·설계 리뷰·다단계 튜토리얼\"    target=\"500자 초과 허용, 섹션 분리 필수\" />\n    </tiers>\n  </response_length_policy>\n  <!-- 2. 정보 정확성 -->\n  <information_accuracy_policy>",
+  "response": "현재 저장된 설정과 비교하면, 실질적인 내용 변경은 없습니다.\n\n차이는 XML 태그 앞의 `<​!--` 같은 **zero-width space(​) 제거** 정도뿐입니다. 기존 설정에는 일부 태그에 보이지 않는 문자가 섞여 있었는데, 새 버전에서는 깔끔한 표준 XML입니다.\n\n`<information_accuracy_policy>` 항목은 기존과 동일하게 내용 없이 열린 채로 끝나 있습니다. 해당 섹션에 채울 내용이 있으시면 알려주세요."
+}

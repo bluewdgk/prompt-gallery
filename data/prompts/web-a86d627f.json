@@ -1,0 +1,12 @@
+{
+  "id": "web-a86d627f",
+  "title": "구글 피쳐드 스니펫 문서 요구사항",
+  "source": "web",
+  "date": "2026-06-29",
+  "tags": [
+    "웹 채팅"
+  ],
+  "summary": "구글 피쳐드를 받기위해 어떤 문서를 참조해야할지 확인해줘.",
+  "prompt": "구글 피쳐드를 받기위해 어떤 문서를 참조해야할지 확인해줘.",
+  "response": "구글 피쳐드(Google Featured / Editor's Choice) 선정을 위한 공식 문서를 찾아볼게요.\n구글 플레이 피쳐드 선정을 위해 참조해야 할 핵심 공식 문서들을 정리해 드릴게요.\n\n---\n\n## 📋 구글 플레이 피쳐드(Featured) 선정을 위한 참조 문서\n\n### 🔑 핵심 공식 문서 (Google 공식)\n\n| 문서 | 링크 | 내용 |\n|------|------|------|\n| **피쳐드 선정 가이드 (메인)** | [play.google.com/console/about/guides/featuring](https://play.google.com/intl/ko/console/about/guides/featuring/) | 피쳐드 선정 기준 전체 개요 |\n| **앱 품질 가이드라인** | [developer.android.com/quality](https://developer.android.com/quality) | 핵심 앱 품질 기준 |\n| **스토어 등록정보 미리보기 애셋** | [Play Console 고객센터](https://support.google.com/googleplay/android-developer/answer/9866151?hl=ko) | 스크린샷·아이콘·영상 가이드 |\n| **프로모션 콘텐츠 가이드** | [Play Console 프로모션](https://support.google.com/googleplay/android-developer/topic/12932623) | 이벤트·할인·오퍼 등록 방법 |\n| **앱 검색 노출 기준** | [Play Console 고객센터](https://support.google.com/googleplay/android-developer/answer/9958766?hl=en) | 관련성 평가 기준 |\n\n---\n\n### 📌 피쳐드 선정의 4가지 핵심 기준\n\n구글은 **앱 품질**과 **프로모션 애셋** 두 가지를 모두 평가하며, 아래 4개 기둥을 기준으로 삼습니다:\n\n1. **Core Value (핵심 가치)** — 유용하거나 재미있는 독창적인 기능 제공. 태블릿·폴더블·워치 등 멀티폼팩터 지원 시 가점\n2. **User Experience (사용자 경험)** — 직관적인 UX, 온보딩, 현지화(로컬라이제이션), 접근성 지원\n3. **Technical Quality (기술 품질)** — 지원 기기에서 안정적 작동, 크래시·버그 없음 (Android Vitals 기준 충족)\n4. **Privacy & Security (개인정보 보호·보안)** — 최소 권한 원칙, 데이터 투명성\n\n---\n\n### 📐 스토어 등록정보 (Store Listing) 요건\n\n피쳐드 추천 대상이 되려면 스크린샷 가이드라인을 준수해야 합니다. 앱은 **해상도 1080픽셀 이상 스크린샷 최소 4개** (가로 16:9 또는 세로 9:16), 게임은 **16:9 가로 또는 9:16 세로 스크린샷 최소 3개**가 필요합니다.\n\n---\n\n### 💡 추가로 확인할 문서\n\n- **Android Vitals** — [play.google.com/console/about/vitals](https://play.google.com/console/about/vitals/) : 기술 품질 모니터링\n- **Pre-launch Report** — [play.google.com/console/about/pre-launchreports](https://play.google.com/console/about/pre-launchreports/) : 출시 전 품질 점검\n- **개발자 프로그램 정책** — [play.google/developer-content-policy](https://play.google/developer-content-policy/) : 정책 위반 시 피쳐드 불가\n\n---\n\n> **참고:** 피쳐드 선정에는 별도 신청 양식이 없으며, 구글 편집팀이 자체적으로 검토·선정합니다. 즉, 위 가이드라인을 준수하는 것이 선정 가능성을 높이는 가장 확실한 방법입니다."
+}

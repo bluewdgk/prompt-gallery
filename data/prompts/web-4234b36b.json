@@ -1,0 +1,12 @@
+{
+  "id": "web-4234b36b",
+  "title": "URL 수식에서 I9 값 제거하기",
+  "source": "web",
+  "date": "2026-07-02",
+  "tags": [
+    "웹 채팅"
+  ],
+  "summary": "=\"https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?ems_gubun=E&POST_CODE=&mgbn=trace&traceselect=1&target",
+  "prompt": "=\"https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?ems_gubun=E&POST_CODE=&mgbn=trace&traceselect=1&target_command=&JspURI=&sid1=\"&I9&\"&postNum=\"&I9\n\n여기에서 맨마지막에 붙이는 &I9 데이터를 바꿔야해.\n\nI9 값이 [ 6897141625825 ]\n이렇게인데 실제로 붙여넣고싶은 데이터는 6897141625825\n\n수식을 변경해줘.",
+  "response": "`&I9` 부분을 아래처럼 바꾸면 대괄호와 공백을 제거하고 숫자만 붙습니다:\n\n```\n=\"https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?ems_gubun=E&POST_CODE=&mgbn=trace&traceselect=1&target_command=&JspURI=&sid1=\"&TRIM(SUBSTITUTE(SUBSTITUTE(I9,\"[\",\"\"),\"]\",\"\"))&\"&postNum=\"&TRIM(SUBSTITUTE(SUBSTITUTE(I9,\"[\",\"\"),\"]\",\"\"))\n```\n\n**원리**: `SUBSTITUTE`로 `[`와 `]`를 각각 제거 → `TRIM`으로 앞뒤 공백 제거 → 순수 숫자 `6897141625825`만 남음.\n\nI9 값 형식이 항상 `[ 숫자 ]`로 동일하다면 이 방식이면 됩니다."
+}

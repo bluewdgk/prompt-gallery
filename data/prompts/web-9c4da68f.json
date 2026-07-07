@@ -1,0 +1,12 @@
+{
+  "id": "web-9c4da68f",
+  "title": "모바일에서 원격 세션 연결하기",
+  "source": "web",
+  "date": "2026-07-02",
+  "tags": [
+    "웹 채팅"
+  ],
+  "summary": "모바일에서 세션 연결 (리모트) 하고싶은데 어떻게 해야해?",
+  "prompt": "모바일에서 세션 연결 (리모트) 하고싶은데 어떻게 해야해?",
+  "response": "PC에서 Claude Code 세션을 켜둔 상태여야 합니다. 방법은 세 가지입니다.\n\n**1. 이미 실행 중인 세션에서 켜기**\n터미널에 `/remote-control` (단축키 `/rc`) 입력 → QR 코드/URL 생성됨\n\n**2. 서버 전용 모드로 새로 시작**\n프로젝트 폴더에서 `claude remote-control` 실행\n\n**3. 항상 자동 켜기**\n`/config` → \"Enable Remote Control for all sessions\" 토글 ON\n\n**모바일에서 연결**\n- Claude 앱(iOS/Android)을 **PC와 동일한 계정**으로 로그인\n- 터미널에 뜬 QR 코드를 앱 카메라로 스캔, 또는 URL을 브라우저에 직접 입력\n- 앱이 없으면 Claude Code에서 `/mobile` 입력 시 설치용 QR 코드 표시\n- 이미 연결된 적 있다면 앱 하단 **Code 탭** → 세션 목록에서 초록 점 표시된 세션 탭\n\n**필수 조건**\n- Claude Code v2.1.51 이상 (`claude --version`으로 확인)\n- API 키 인증 불가, claude.ai 계정 로그인 필수\n- Pro/Max/Team/Enterprise 플랜 지원 (Team/Enterprise는 관리자가 먼저 활성화해야 함)\n\n코드는 PC에 그대로 남고, 메시지·도구 실행 결과만 Anthropic API를 거쳐 오갑니다. 포트포워딩·VPN 불필요합니다."
+}

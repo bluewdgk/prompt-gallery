@@ -1,0 +1,12 @@
+{
+  "id": "web-c445424a",
+  "title": "Claude 튜토리얼",
+  "source": "web",
+  "date": "2026-07-03",
+  "tags": [
+    "웹 채팅"
+  ],
+  "summary": "클로드 튜토리얼은 한국어 지원이 안되니? 영어로만 나오네 https://claude.com/resources/tutorials/choosing-the-right-claude-model?open_in_browser=1",
+  "prompt": "클로드 튜토리얼은 한국어 지원이 안되니? 영어로만 나오네\nhttps://claude.com/resources/tutorials/choosing-the-right-claude-model?open_in_browser=1",
+  "response": "페이지 하단에 언어 선택 옵션이 있는데, \"한국어 (South Korea)\"가 https://claude.com/ko 로 연결돼요. 다만 이건 사이트 전체(claude.com) 로케일 전환이고, 튜토리얼 개별 글은 한국어 번역이 없어서 그쪽으로 가도 영어로 뜰 가능성이 높습니다.\n\n즉, 튜토리얼 콘텐츠 자체는 현재 한국어 번역이 제공되지 않는 걸로 보입니다. 확실한 답은 Anthropic 지원팀에 문의하시는 게 정확해요: https://support.claude.com"
+}
