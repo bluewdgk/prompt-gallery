@@ -53,6 +53,35 @@ node scripts/convert-web-chat.mjs ~/Downloads/claude_export.json
 # --tags react,리팩토링
 ```
 
+## 로컬 관리자 도구 사용법
+
+정적 사이트 특성상 배포된 사이트에는 삭제·가져오기 기능을 넣을 수 없습니다. 로컬에서만 동작하는 관리자 서버를 제공합니다.
+
+```bash
+npm run admin   # http://localhost:3001 에서 관리자 UI 실행
+```
+
+브라우저에서 `http://localhost:3001` 을 열면 두 가지 탭이 나타납니다.
+
+### 카드 관리 탭
+
+- `data/prompts/` 내 모든 JSON 카드를 제목·소스·날짜·턴수 순으로 나열합니다.
+- 각 카드 오른쪽의 **삭제** 버튼을 클릭하면 확인 팝업이 뜨고, 확인 시 파일이 즉시 삭제됩니다.
+- **새로고침** 버튼으로 파일 목록을 다시 불러올 수 있습니다.
+
+### 대화 가져오기 탭
+
+1. **파일 선택** 버튼으로 Claude export 파일을 선택합니다.
+   - 지원 포맷: `conversations.json` (웹 export), `.jsonl` (Claude Code 세션)
+2. 파일을 읽어 유효한 대화 목록을 체크박스 형태로 표시합니다.
+   - 이미 `data/prompts/`에 같은 ID가 있으면 **중복** 표시됩니다 (가져오면 덮어씁니다).
+3. 원하는 대화를 체크한 뒤 **N개 대화 가져오기** 버튼을 클릭합니다.
+4. 선택한 대화가 `data/prompts/web-XXXXXXXX.json` 형식으로 저장됩니다.
+
+> **참고**: 관리자 서버는 `127.0.0.1`(로컬호스트)에만 바인딩되며 Astro 빌드(`dist/`)에 포함되지 않습니다. Vercel 배포 시 이 서버는 실행되지 않습니다.
+>
+> 포트를 변경하려면 `ADMIN_PORT=3002 npm run admin` 처럼 환경 변수를 사용합니다.
+
 ## Vercel 배포
 
 ### 방법 A — Vercel 웹 대시보드 (권장, 가장 빠름)
